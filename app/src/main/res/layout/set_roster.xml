@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context="com.example.vbstats.MainActivity"
+    >
+
+    <TextView
+        android:id="@+id/SetRosterTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set Roster"
+        android:layout_centerHorizontal="true"
+        android:textSize="45dp"
+        android:paddingBottom="50dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Roster:"
+        android:layout_above="@+id/rosterList"
+
+        />
+
+    <ListView
+        android:layout_width="175dp"
+        android:layout_height="350dp"
+        android:layout_below="@+id/SetRosterTitle"
+        android:id="@+id/rosterList"
+        android:layout_marginTop="20dp"
+        />
+
+    <Button
+        android:id="@+id/addPlayerButton"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="+"
+        android:layout_toRightOf="@+id/rosterList"
+        android:layout_below="@+id/SetRosterTitle"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="50dp"
+        />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/rosterList"
+        android:layout_marginTop="5dp"
+        android:text="BACK" />
+
+    <Spinner
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/addPlayerButton"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="150dp"
+        android:layout_toRightOf="@id/rosterList"
+
+        />
+
+</RelativeLayout>
+
