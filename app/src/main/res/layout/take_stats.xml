@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context="com.example.vbstats.MainActivity">
+
+    <ListView
+        android:id="@+id/statsList"
+        android:layout_width="670dp"
+        android:layout_height="200dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/statsList"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="30dp"
+        android:text="Back"
+        android:id="@+id/takeStatsBackButton"
+        />
+
+    <Button
+        android:id="@+id/takeStatsSaveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/statsList"
+        android:layout_alignRight="@+id/statsList"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="30dp"
+        android:text="Save and Finish" />
+
+</RelativeLayout>
+
+
+

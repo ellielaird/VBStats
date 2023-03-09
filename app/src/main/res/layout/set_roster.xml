@@ -11,11 +11,10 @@
         android:id="@+id/SetRosterTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Set Roster"
         android:layout_centerHorizontal="true"
-        android:textSize="45dp"
         android:paddingBottom="50dp"
-        />
+        android:text="Set Roster"
+        android:textSize="45dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,23 +25,22 @@
         />
 
     <ListView
+        android:id="@+id/rosterList"
         android:layout_width="175dp"
         android:layout_height="350dp"
         android:layout_below="@+id/SetRosterTitle"
-        android:id="@+id/rosterList"
-        android:layout_marginTop="20dp"
-        />
+        android:layout_marginTop="20dp" />
 
     <Button
         android:id="@+id/addPlayerButton"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:text="+"
-        android:layout_toRightOf="@+id/rosterList"
         android:layout_below="@+id/SetRosterTitle"
         android:layout_marginLeft="75dp"
         android:layout_marginTop="50dp"
-        />
+        android:layout_toRightOf="@+id/rosterList"
+        android:backgroundTint="#66ccff"
+        android:text="+" />
 
     <Button
         android:id="@+id/backButton"
@@ -50,9 +48,11 @@
         android:layout_height="50dp"
         android:layout_below="@+id/rosterList"
         android:layout_marginTop="5dp"
-        android:text="BACK" />
+        android:text="BACK"
+        android:backgroundTint="#66ccff"/>
 
     <Spinner
+        android:id="@+id/removePlayerSpinner"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_below="@id/addPlayerButton"
@@ -61,6 +61,30 @@
         android:layout_toRightOf="@id/rosterList"
 
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SetRosterTitle"
+        android:layout_toRightOf="@id/rosterList"
+        android:layout_marginLeft="86dp"
+        android:text="Add Player"
+        android:layout_marginTop="25dp"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SetRosterTitle"
+        android:layout_toRightOf="@id/rosterList"
+        android:layout_marginLeft="80dp"
+        android:text="Remove Player"
+        android:layout_marginTop="220dp"
+
+        />
+
+
 
 </RelativeLayout>
 
