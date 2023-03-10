@@ -31,16 +31,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        roster = ListContainer.getList();
-        starting6 = ListContainer.getStarting6();
-
-
+        // FIX - no need to store starting6 just complicates things...  can be generated from stored roster
         Gson gson = new Gson();
         String json = load("roster");
-        String json1 = load("starting6");
+        //String json1 = load("starting6");
         Type playerType = new TypeToken<ArrayList<Player>>(){}.getType();
         roster = gson.fromJson(json, playerType);
-        starting6 = gson.fromJson(json1, playerType);
+
+        //FIX - need to deal with the very first time app is run and there is no roster saved...
+        if(roster == null)
+            // first time ever running app on this device
+            roster = new ArrayList<>();
+
+        // FIX - don't load starting 6, calculate it from roster
+        //starting6 = gson.fromJson(json1, playerType);
+
+        //FIX - added new method to return the starting6 list
+        starting6 = getStarters(roster);
         ListContainer.setRoster(roster);
         ListContainer.setStarting6(starting6);
 
@@ -53,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent i1 = new Intent(getApplication(), SetRosterActivity.class);
                 startActivity(i1);
             }
-
         });
 
         TextView tvTakeStatsButton = (TextView) findViewById(R.id.takeStatsButton);
@@ -68,10 +74,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-@Override
+    // FIX - generates starting 6 list
+    private ArrayList<Player> getStarters(ArrayList<Player> roster) {
+        ArrayList<Player> starters = new ArrayList<>();
+
+        for(Player p: roster)
+            if(p.getStarter())
+                starters.add(p);
+
+        return starters;
+    }
+
+    @Override
 protected void onResume() {
     super.onResume();
-
 
 
 }
@@ -83,9 +99,9 @@ protected void onResume() {
         super.onStop();
         Gson gson = new Gson();
         String json = gson.toJson(roster);
-        String json1 = gson.toJson(starting6);
+       // String json1 = gson.toJson(starting6);
         save("roster", json);
-        save("starting6", json1);
+        //save("starting6", json1);
     }
 
     public void save(String k, String v){

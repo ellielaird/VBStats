@@ -36,20 +36,14 @@ public class AddPlayer extends AppCompatActivity {
 
                 CheckBox checkbox = (CheckBox)findViewById(R.id.starterCheckBox);
                     if(checkbox.isChecked()==true){
-                        starting6.add(new Player(playerNum, playerName, 0,0, 0, 0, 0, 0, 0, 0.0, 0.0,0.0,0.0, true));
                         roster.add(new Player(playerNum, playerName, 0,0, 0, 0, 0, 0, 0, 0.0,0.0,0.0,0.0, true));
+                        starting6.add(roster.get(roster.size()-1));
                     }
-
-
                     else
                         roster.add(new Player(playerNum, playerName, 0, 0, 0, 0, 0, 0, 0, 0.0,0.0,0.0,0.0,false));
-
+                finish();
             }
-
-
-
         });
-
 
         TextView tvAddPlayerBackButton = (TextView) findViewById(R.id.addPlayerBackButton);
         tvAddPlayerBackButton.setOnClickListener(new View.OnClickListener() {

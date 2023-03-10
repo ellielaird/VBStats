@@ -28,11 +28,11 @@ import java.io.InputStreamReader;
 
 public class TakeStatsActivity extends AppCompatActivity {
 
-
-
 Button saveButton, readButton;
 private String filename = "vbstats.csv";
 private String filepath = "";
+public static PlayerAdaptor playerAdaptor1;
+
 File myExternalFile;
 
 String myData = "";
@@ -43,9 +43,6 @@ String myData = "";
 
     ArrayList<Player> roster = ListContainer.getList();
     ArrayList<Player> starting6 = ListContainer.getStarting6();
-
-
-
 
     saveButton = (Button)findViewById(R.id.takeStatsSaveButton);
     saveButton.setOnClickListener(new View.OnClickListener() {
@@ -120,23 +117,10 @@ String myData = "";
         myExternalFile = new File(getExternalFilesDir(filepath), filename);
     }
 
-
-
-
-
-
-
-
-        PlayerAdaptor playerAdaptor1 = new PlayerAdaptor(this, R.layout.item, starting6);
+        playerAdaptor1 = new PlayerAdaptor(this, R.layout.item, starting6);
         ListView listView = (ListView)findViewById(R.id.statsList);
         listView.setAdapter(playerAdaptor1);
         listView.setSmoothScrollbarEnabled(true);
-
-
-
-
-
-
 
         TextView tvTakeStatsBackButton = (TextView) findViewById(R.id.takeStatsBackButton);
         tvTakeStatsBackButton.setOnClickListener(new View.OnClickListener() {

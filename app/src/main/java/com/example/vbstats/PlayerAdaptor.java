@@ -19,6 +19,8 @@ import java.util.ArrayList;
 
 public class PlayerAdaptor extends ArrayAdapter<Player>{
 
+    Player currentPlayer;
+
         public PlayerAdaptor(Context context, int id, ArrayList<Player> starting6){
             super (context, id, starting6);
         }
@@ -34,7 +36,7 @@ public class PlayerAdaptor extends ArrayAdapter<Player>{
               currentItemView = LayoutInflater.from(getContext()).inflate(R.layout.item, parent, false);
           }
 
-          Player currentPlayer = (Player) getItem(position);
+          currentPlayer = (Player) getItem(position);
 
           TextView tvPlayerNum = currentItemView.findViewById(R.id.playerNumber);
           tvPlayerNum.setText(Integer.toString(currentPlayer.getPlayerNum()));
@@ -64,13 +66,24 @@ public class PlayerAdaptor extends ArrayAdapter<Player>{
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l){
 
                 if(i!=0) {
-                    Player t = roster.get(i - 1);
-                    t.setStarter(true);
-                    Player c = currentPlayer;
-                    c.setStarter(false);
-                    starting6.add(starting6.indexOf(c), t);
-                    starting6.remove(c);
-                    adaptor1.notifyDataSetChanged();
+
+                    // substitute players
+                    Player in = roster.get(i - 1);
+                    in.setStarter(true);
+                    Player out = currentPlayer;
+                    out.setStarter(false);
+                    starting6.add(starting6.indexOf(out), in);
+                    starting6.remove(out);
+
+                    // FIX - make in the new current player this was causing
+                    //  LOTS of bugs because the player getting the swings, etc
+                    //  was still the OLD starter even after the substitution
+                    currentPlayer = in;
+
+                    // FIX - need to tell the listadapter to update so the starting 6 player list
+                    //  is refreshed
+                    // and update the dataset
+                    TakeStatsActivity.playerAdaptor1.notifyDataSetChanged();
                 }
 
             }
