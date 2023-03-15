@@ -1,0 +1,162 @@
+@startuml
+
+title __VBSTATS's Class Diagram__\n
+
+  namespace com.example.vbstats {
+    class com.example.vbstats.AddPlayer {
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.vbstats {
+    class com.example.vbstats.ListContainer {
+        {static} - roster : ArrayList<Player>
+        {static} - starting6 : ArrayList<Player>
+        {static} + getList()
+        {static} + getStarting6()
+        {static} + load()
+        {static} + save()
+        {static} + setRoster()
+        {static} + setStarting6()
+    }
+  }
+
+  namespace com.example.vbstats {
+    class com.example.vbstats.MainActivity {
+        ~ roster : ArrayList<Player>
+        ~ starting6 : ArrayList<Player>
+        + load()
+        + save()
+        # onCreate()
+        # onResume()
+        # onStop()
+        - getStarters()
+    }
+  }
+  
+
+  namespace com.example.vbstats {
+    class com.example.vbstats.Player {
+        ~ starter : boolean
+        - SE : int
+        - ace : int
+        - assist : int
+        - countSR0 : double
+        - countSR1 : double
+        - countSR2 : double
+        - countSR3 : double
+        - dig : int
+        - error : int
+        - kill : int
+        - name : String
+        - playerNum : int
+        - swing : int
+        + Player()
+        + Player()
+        + Player()
+        + addAce()
+        + addAssist()
+        + addDig()
+        + addError()
+        + addKill()
+        + addSR0()
+        + addSR1()
+        + addSR2()
+        + addSR3()
+        + addSe()
+        + addSwing()
+        + equals()
+        + getAce()
+        + getAssist()
+        + getCountSR0()
+        + getCountSR1()
+        + getCountSR2()
+        + getCountSR3()
+        + getDig()
+        + getError()
+        + getKill()
+        + getName()
+        + getPlayerNum()
+        + getSE()
+        + getStarter()
+        + getSwing()
+        + setAce()
+        + setAssist()
+        + setCountSR0()
+        + setCountSR1()
+        + setCountSR2()
+        + setCountSR3()
+        + setDig()
+        + setError()
+        + setKill()
+        + setName()
+        + setSE()
+        + setStarter()
+        + setSwing()
+    }
+  }
+  
+
+  namespace com.example.vbstats {
+    class com.example.vbstats.Player1Adaptor {
+        + Player1Adaptor()
+        + getView()
+    }
+  }
+  
+
+  namespace com.example.vbstats {
+    class com.example.vbstats.PlayerAdaptor {
+        + PlayerAdaptor()
+        + getView()
+    }
+  }
+  
+
+  namespace com.example.vbstats {
+    class com.example.vbstats.SetRosterActivity {
+        ~ adaptor : ArrayAdapter
+        ~ names : ArrayList<String>
+        ~ roster : ArrayList<Player>
+        ~ spinner : Spinner
+        # onCreate()
+        # onResume()
+        - populateSpinnerNames()
+    }
+  }
+  
+
+  namespace com.example.vbstats {
+    class com.example.vbstats.TakeStatsActivity {
+        {static} + playerAdaptor1 : PlayerAdaptor
+        ~ myData : String
+        ~ myExternalFile : File
+        ~ readButton : Button
+        ~ saveButton : Button
+        - filename : String
+        - filepath : String
+        # onCreate()
+        {static} - isExternalStorageAvailable()
+        {static} - isExternalStorageReadOnly()
+    }
+  }
+  
+
+  com.example.vbstats.AddPlayer -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.vbstats.MainActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.vbstats.Player .up.|> java.io.Serializable
+  com.example.vbstats.Player1Adaptor -up-|> android.widget.ArrayAdapter
+  com.example.vbstats.PlayerAdaptor -up-|> android.widget.ArrayAdapter
+  com.example.vbstats.PlayerAdaptor o-- com.example.vbstats.Player : currentPlayer
+  com.example.vbstats.SetRosterActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.vbstats.SetRosterActivity o-- com.example.vbstats.Player1Adaptor : playerAdaptor2
+  com.example.vbstats.TakeStatsActivity -up-|> androidx.appcompat.app.AppCompatActivity
+
+  com.example.vbstats.SetRosterActivity o-d- com.example.vbstats.ListContainer : playerAdaptor2
+  com.example.vbstats.TakeStatsActivity o-d- com.example.vbstats.ListContainer : playerAdaptor2
+  com.example.vbstats.MainActivity o-d- com.example.vbstats.ListContainer : playerAdaptor2
+  com.example.vbstats.AddPlayer o-d- com.example.vbstats.ListContainer : playerAdaptor2
+  com.example.vbstats.ListContainer *-d- com.example.vbstats.Player : playerAdaptor2
+
+@enduml
